@@ -26,7 +26,12 @@ api = tweepy.API(auth, wait_on_rate_limit=True)
 
 
 for user in tweepy.Cursor(api.get_followers, screen_name="geeksblabla").items():
-    print(user)
+    # Get Followers objects as Json :
+    # print(user._json)
+
+    with open('followers copy.json', 'a') as followers_file:
+        followers_file.write(json.dumps(user._json) + '\n')
+
     # follower = {
     #     'screen_name': user.screen_name,
     #     'id': user.id,
@@ -36,4 +41,4 @@ for user in tweepy.Cursor(api.get_followers, screen_name="geeksblabla").items():
     #     'url':user.url,
     # }
 
-    print('follower: ' + user.screen_name)
+    # print('follower: ' + user.screen_name)
